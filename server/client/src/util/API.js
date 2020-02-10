@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 
 /* PRODUCT
@@ -192,11 +191,11 @@ const API = {
     getProducts: function(q) {
         return axios.get("http://localhost:3001/api/products?q="+q);
     },
-    getProductsById: function(id) {
-        return axios.get("http://localhost:3001/api/products/"+id, { port: 3001 });
+    getProductsById: function(sku) {
+        return axios.get("http://localhost:3001/api/products/"+sku);
     },
     getProductsByCategory: function() {
-        return axios.get("http://localhost:3001/api/products/category", { port: 3001 });
+        return axios.get("http://localhost:3001/api/products/category");
     }
 };
 

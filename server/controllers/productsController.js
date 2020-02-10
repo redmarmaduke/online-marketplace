@@ -13,7 +13,7 @@ module.exports = {
         }*)?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`
       )
       .then(results => {
-        console.log("RESULTS: ", results.data);
+        //console.log("RESULTS: ", results.data);
         res.json([...results.data.products]);
       })
       .catch(err => console.log(err));
@@ -36,9 +36,11 @@ module.exports = {
     //   .catch(err => console.log(err));
   },
   findById: function(req, res) {
+    // FIX:  productId can be null, productId is also sku
+    // so I'm changing productId to sku
     axios
       .get(
-        `https://api.bestbuy.com/v1/products(productId=${
+        `https://api.bestbuy.com/v1/products(sku=${
           req.params.id
         })?format=json&apiKey=${process.env.BEST_BUY_API_KEY}`
       )

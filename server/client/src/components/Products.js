@@ -6,55 +6,82 @@ class Products extends Component {
         super(props);
 
         this.state = { products: [] };
-        this.props = props;    
-        this.q = props.query ? props.query : "";
+        this.props = props;
+
+        console.log("PROPS:",props);
+        this.onClickAddToCart = this.onClickAddToCart.bind(this);
     }
 
-    componentDidMount = () => {
+    getProducts() {
+        let query = this.props.query || "";
         let that = this;
-        API.getProducts(this.q).then(function (result) {
+        API.getProducts(query).then(function (result) {
             // if didmount is after render why use setState?
             that.setState({ products: result.data });
         }).catch((error) => console.log(error));
     }
 
+    componentDidMount = () => {
+        this.getProducts();
+    }
+
+    onClickAddToCart(obj) {
+        let sku = obj.sku;
+
+        let count = (this.props.cart[sku] ? this.props.cart[sku].count : undefined) || 0;
+        let update = {
+            [sku]: {
+                count: ++count,
+                product: obj
+            }
+        };
+        this.props.setCart({ ...this.props.cart, ...update });
+        console.log(this.props.cart);
+    }
+
     render() {
-        let cards = [];
         let style = {
             card: {
                 width: "300px"
             },
+            imgContainer: {
+                height: "150px"
+            },
             img: {
-                height: "200px"
+                width: "auto",
+                height: "auto"
             }
         };
 
+        //this.getProducts();
+
         let products = this.state.products;
-
-        for (let el of products) {
-            cards.push(
-                <div nameClass="card border-1 border-dark" style={style.card}>
-                    <div style={style.img}>
-                        <img src={el.mediumImage} nameClass="card-img-top img-fluid" alt="..." />
-                    </div>
-                    <div nameClass="card-body">
-                        <p nameClass="card-text">{el.name}</p>
-                        <p nameClass="card-text">{el.customerReviewAverage}</p>
-                        <p nameClass="card-text">{el.salePrice}</p>
-                    </div>
-                </div>
-            );
-        }
-
+        console.log(products);
         return (
             <div className="containter justify-content-center row">
-                <div className="col-1"/>
+                <div className="col-1" />
                 <div className="col-10">
                     <div className="d-flex flex-wrap">
-                        {cards}
+                        {
+                            products.map((product, i) => {
+                                return (
+                                    <div key={i} className="card border-1 border-dark" style={style.card}>
+                                        <div style={style.imgContainer}>
+                                            <img src={product.mediumImage} style={style.img} className="card-img-top" alt="..." />
+                                        </div>
+                                        <div className="card-body">
+                                            <p className="card-text">{product.name}</p>
+                                            <p className="card-text">{product.customerReviewAverage}</p>
+                                            <p className="card-text">${product.salePrice}</p>
+                                            <button type="button" className="btn btn-warning" key={i} onClick={(e) => this.onClickAddToCart(product)}>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
-                <div className="col-1"/>
+                <div className="col-1" />
             </div>
         );
     }
