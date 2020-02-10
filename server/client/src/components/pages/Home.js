@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from '../Navbar';
 import Products from '../Products';
 
 const Home = (props) => {
     return (
         <div>
-            <Navbar />
-            <Products />
+            <Products {...props}/>
         </div>
     );
 };
