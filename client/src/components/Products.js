@@ -8,7 +8,6 @@ class Products extends Component {
         this.state = { products: [] };
         this.props = props;
 
-        console.log("PROPS:",props);
         this.onClickAddToCart = this.onClickAddToCart.bind(this);
     }
 
@@ -22,6 +21,10 @@ class Products extends Component {
     }
 
     componentDidMount = () => {
+        this.getProducts();
+    }
+
+    componentDidUpdate = () => {
         this.getProducts();
     }
 
@@ -69,11 +72,13 @@ class Products extends Component {
                                         <div style={style.imgContainer}>
                                             <img src={product.mediumImage} style={style.img} className="card-img-top" alt="..." />
                                         </div>
-                                        <div className="card-body">
+                                        <div className="card-body d-flex flex-column justify-content-between">
                                             <p className="card-text">{product.name}</p>
-                                            <p className="card-text">{product.customerReviewAverage}</p>
-                                            <p className="card-text">${product.salePrice}</p>
-                                            <button type="button" className="btn btn-warning" key={i} onClick={(e) => this.onClickAddToCart(product)}>Add to Cart</button>
+                                            <div>
+                                                <p className="card-text">{product.customerReviewAverage}</p>
+                                                <p className="card-text">${product.salePrice}</p>
+                                                <button type="button" className="btn btn-warning" key={i} onClick={(e) => this.onClickAddToCart(product)}>Add to Cart</button>
+                                            </div>
                                         </div>
                                     </div>
                                 );

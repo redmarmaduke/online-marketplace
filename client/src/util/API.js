@@ -196,6 +196,12 @@ const API = {
     },
     getProductsByCategory: function() {
         return axios.get("http://localhost:3001/api/products/category");
+    },
+    createAccount: function(email,password) {
+        return axios.post("http://localhost:3001/api/users/signup", { email: email, password: password} );
+    },
+    loginAccount: function(email,password) {
+        return axios.post("http://localhost:3001/api/users/login", { email: email, password: password} );
     }
 };
 
