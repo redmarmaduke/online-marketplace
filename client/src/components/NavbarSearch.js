@@ -14,7 +14,6 @@ class NavbarSearch extends Component {
 
     onChangeQuery = (event) => {
         this.setState({query : event.target.value});
-        //this.props.setQuery(event.target.value);
     };
 
     onClickQuery = (event) => {
@@ -54,6 +53,7 @@ class NavbarSearch extends Component {
         else {
             login = (<></>);
         }
+        
         let cart;
         if (typeof this.props.cart === 'object' && this.props.cart !== null && Object.keys(this.props.cart).length !== 0) {
             cart = (
