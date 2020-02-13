@@ -7,7 +7,8 @@ As a user I want to be able to add and remove items from a cart and see a subtot
 
 ## Screen Shots
 
-![Main Page]()
+![Main Page](main.PNG)
+![Cart](cart.PNG)
 
 ## Code of Interest
 
@@ -28,6 +29,14 @@ setCart(cart) {
 
 This format conversion code was of interest since I spent some time working out how it worked.  (I wasn't
 familiar with ?= and ?! regexp operators.)
+
+This regexp results in the match of three or fewer digits per replace attempt. ie.  1222333 will match 1 and then 222 and then 333.  The regexp actually matches as many digits as it can where the remaining unmatched
+digits can be a multiple of a sequence of three digits (0,3,6,9, etc).
+
+?=(regexp) is :valid match on (regexp)
+?!(regexp) is :invalid match of (regexp) (the match will ignore the regexp match as part of the match)
+  it also forces the match to be non-greedy  (ie. matches from right to left from the first non-
+  number)
 
 ```javascript
 const Format = {
