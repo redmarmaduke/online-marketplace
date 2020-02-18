@@ -189,19 +189,19 @@ supports up to 4 speakers.',
 
 const API = {
     getProducts: function(q) {
-        return axios.get("http://localhost:3001/api/products?q="+q);
+        return axios.get("/api/products?q="+q);
     },
     getProductsById: function(sku) {
-        return axios.get("http://localhost:3001/api/products/"+sku);
+        return axios.get("/api/products/"+sku);
     },
     getProductsByCategory: function() {
-        return axios.get("http://localhost:3001/api/products/category");
+        return axios.get("/api/products/category");
     },
     createAccount: function(email,password) {
-        return axios.post("http://localhost:3001/api/users/signup", { email: email, password: password} );
+        return axios.post("/api/users/signup", { email: email, password: password} );
     },
     loginAccount: function(email,password) {
-        return axios.post("http://localhost:3001/api/users/login", { email: email, password: password} );
+        return axios.post("/api/users/login", { email: email, password: password} );
     }
 };
 
