@@ -59,13 +59,13 @@ space to unzip the contents of the repository.
 
 ### Installing a Local Instance
 
-1) Visit https://github.com/redmarmaduke/clicky-game.
+1) Visit https://github.com/redmarmaduke/online-marketplace.
 2) Select the Clone or Download button
 3) Select the most appropriate format/method for download. 
 
 ex. using the command line git tool
 
-### `git clone https://github.com/redmarmaduke/clicky-game.git`
+### `git clone https://github.com/redmarmaduke/online-marketplace.git`
 
 ### `npm install`
  
