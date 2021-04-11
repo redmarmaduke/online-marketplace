@@ -11,6 +11,7 @@ router.use(function(req, res) {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   }
   else {
+    console.log("SEND");
     res.sendFile(path.join(__dirname, "../client/public/index.html"));
   }
 });
