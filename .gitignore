@@ -26,6 +26,8 @@
 .env.test.local
 .env.production.local
 .env copy
+.env
+.vscode
 
 npm-debug.log*
 yarn-debug.log*
